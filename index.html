@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Top Gadgets da Amazon</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Top Gadgets da Amazon</h1>
+      <p>Ofertas incríveis em tecnologia. Atualizações automáticas com os melhores produtos!</p>
+    </div>
+  </header>
+  <main class="container">
+    <section id="posts" class="grid">
+      <!-- Posts serão inseridos aqui -->
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Top Gadgets da Amazon. Desenvolvido automaticamente.</p>
+  </footer>
+  <script>
+    fetch("posts.json")
+      .then(response => response.json())
+      .then(data => {
+        const posts = document.getElementById("posts");
+        data.forEach(post => {
+          posts.innerHTML += `
+            <div class="card">
+              <img src="${post.image}" alt="${post.title}">
+              <div class="card-content">
+                <h2>${post.title}</h2>
+                <p>${post.description}</p>
+                <a href="${post.link}" target="_blank" class="btn">Ver na Amazon</a>
+              </div>
+            </div>
+          `;
+        });
+      });
+  </script>
+</body>
+</html>
